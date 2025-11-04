@@ -5,11 +5,14 @@ Office.onReady(() => {
 });
 
 function openForm(event) {
-  window.open("https://forms.office.com/e/0WMwRUR02J"); // Target URL
-  event.completed();
+  try {
+    window.open("https://forms.office.com/e/0WMwRUR02J");
+  } finally {
+    event.completed();
+  }
 }
 
-// Make function globally accessible
+// Make the function globally accessible to Outlook
 if (typeof window !== "undefined") {
-  window.openForm = openForm;
+  window.openForm = openForm;  // Must match <FunctionName> in manifest
 }
