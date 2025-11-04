@@ -4,20 +4,16 @@ Office.onReady(() => {
   // Office.js is ready
 });
 
-/**
- * Command handler for the ribbon button.
- * Must match <FunctionName>launchForm</FunctionName> in the manifest.
- */
-function launchForm(event) {
+function openForm(event) {
   try {
     window.open("https://forms.office.com/e/0WMwRUR02J");
   } finally {
-    // Always tell Outlook we're done, even if window.open fails
     event.completed();
   }
 }
 
-// Make the function globally accessible so Outlook can find it
+// Make the functions globally accessible so Outlook can find them
 if (typeof window !== "undefined") {
-  window.launchForm = launchForm;
+  window.openForm = openForm;     // for you / testing
+  window.launchForm = openForm;   // for Outlook, matches <FunctionName>
 }
